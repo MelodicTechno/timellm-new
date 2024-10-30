@@ -67,6 +67,7 @@ def data_provider(args, flag):
     return data_set, data_loader
 
 def imudata_provider(args, f, flag):
+
     Data = data_dict[args.data]
     timeenc = 0 if args.embed != 'timeF' else 1
     percent = args.percent
