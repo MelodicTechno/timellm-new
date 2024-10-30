@@ -43,7 +43,7 @@ dist/
 build/
 
 data_provider_pretrain/
-scripts/
+#scripts/
 *.md
 *.txt
 
