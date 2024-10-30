@@ -117,6 +117,6 @@ def get_session(args, flag):
         test_data, test_loader = imudata_provider(args, f, flag)
         data_list.append(test_data)
         loader_list.append(test_loader)
-        data_list.append(test_data)
+        # data_list.append(test_data)
 
     return data_list, loader_list
