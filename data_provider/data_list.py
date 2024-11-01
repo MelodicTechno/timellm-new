@@ -2,19 +2,20 @@ import json
 import random
 import os
 
+
 def data_list(args, seq_len, pred_len):
-  datajson_path = args.data_dict
-  # 是否需要重新打乱排序、重新生成train_list和test_list
-  # 0：不需要；1：需要
-  if args.redivide_datasetlist == 1:
-      train_list, test_list = list_shuffling(datajson_path)
-  else:
-      with open(datajson_path, 'r') as f:
-        data = json.load(f)
-      train_list = data["train_list"]
-      test_list = data["test_list"]
-  return train_list, test_list
-  
+    datajson_path = args.data_dict
+    # 是否需要重新打乱排序、重新生成train_list和test_list
+    # 0：不需要；1：需要
+    if args.redivide_datasetlist == 1:
+        train_list, test_list = list_shuffling(datajson_path)
+    else:
+        with open(datajson_path, 'r') as f:
+            data = json.load(f)
+        train_list = data["train_list"]
+        test_list = data["test_list"]
+    return train_list, test_list
+
 
 # 重新生成train_list,test_list
 def list_shuffling(datajson_path):
@@ -22,13 +23,13 @@ def list_shuffling(datajson_path):
     new_train_list = []
     new_test_list = []
     with open(datajson_path, 'r') as f:
-      data = json.load(f)
+        data = json.load(f)
 
     # 处理 kitchen、livingroom 和 bathroom 列表
     for category in ["kitchen", "livingroom", "bathroom"]:
-      train_part, test_part = split_and_add(data[category])
-      new_train_list.extend(train_part)
-      new_test_list.extend(test_part)
+        train_part, test_part = split_and_add(data[category])
+        new_train_list.extend(train_part)
+        new_test_list.extend(test_part)
     # 处理 playVR 列表
     playVR_list = data["playVR"]
     random.shuffle(playVR_list)
@@ -50,8 +51,6 @@ def split_and_add(data_list):
     split_point = len(data_list) * 2 // 3
     return data_list[:split_point], data_list[split_point:]
 
-
-
 # # 测试
 # def data_list(datajson_path,redivide_datasetlist, seq_len, pred_len):
 #   datajson_path = datajson_path
@@ -66,7 +65,7 @@ def split_and_add(data_list):
 #       train_list = data["train_list"]
 #       test_list = data["test_list"]
 #   return train_list, test_list
-  
+
 # def main():
 #     datajson_path = "/home/wangtiantian/lipei/timellm/dataset/data.json"
 #     train_list, test_list = data_list(datajson_path, 1, 2, 3)

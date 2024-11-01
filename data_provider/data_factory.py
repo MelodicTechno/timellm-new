@@ -74,7 +74,6 @@ def imudata_provider(args, f, flag):
     root_path = args.root_path
     f_path = os.path.join(root_path, flag, f)
 
-
     if flag == 'test':
         shuffle_flag = False
         drop_last = True
