@@ -3,7 +3,6 @@ train_epochs=2
 learning_rate=0.01
 llama_layers=32
 
-master_port=12345
 num_process=1
 batch_size=2
 d_model=32
@@ -11,7 +10,7 @@ d_ff=128
 
 comment='TimeLLM-imu01'
 
-accelerate launch --mixed_precision bf16 --num_processes $num_process --main_process_port $master_port run_imu.py \
+accelerate launch --mixed_precision bf16 --num_processes $num_process run_imu.py \
   --task_name long_term_forecast \
   --is_training 1 \
   --root_path ./dataset/imu/ \
